@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask</title>
+    <style>
+        nav{
+            height: 100px;
+            background-color: tomato;
+            color: white;
+            font-size: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        table{
+            margin: 0 auto;
+            width: 80%;
+            background-color: white;
+            border: 1px solid tomato;
+            border-radius: 10px;
+            font-size: 30px;
+        }
+        th, td{
+            border: 1px solid tomato;
+            padding: 10px;
+            text-align: center;
+            background-color: tomato;
+            color: white;
+        }
+        th, td{
+            background-color: white;
+            color: tomato;
+        }
+
+        tbody tr:hover td{
+            background-color: tomato;
+            color: white;
+        }
+        td a img{
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/form">Signup</a>
+    </nav>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in users %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.username }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.password }}</td>
+                <td>
+                    <a href="/delete/{{ i.id }}">
+                        <img src="{{ url_for ('static', filename='delete.png') }}" alt="Delete">
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+</body>
+</html>
