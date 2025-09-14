@@ -52,5 +52,14 @@ def delete(id):
     return redirect(url_for('Home'))
 
 
+@app.route("/search", methods=['POST'])
+def Search():
+    if request.method == "POST":
+        search = request.form['search']
+        users_by_name = Users.query.filter_by(name=search).all()
+        users_by_username = Users.query.filter_by(username=search).all()
+        return render('search.html', users_by_name=users_by_name, users_by_username=users_by_username)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
